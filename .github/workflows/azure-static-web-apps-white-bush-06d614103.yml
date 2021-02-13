@@ -13,7 +13,7 @@ jobs:
   
   test_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     name: Unit Tests..
     steps:
     - uses: actions/checkout@v2
@@ -22,13 +22,7 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Install dependencies
-        pwd
-        ls
-        ls -lR
-      run: |
-        pwd
-        ls
-        dotnet restore /home/runner/work/blazor-swa/blazor-swa/blazor-basic-swa.sln
+      run: dotnet restore blazor-basic-swa.sln
     - name: Build
       run: dotnet build /home/runner/work/blazor-swa/blazor-swa/blazor-basic-swa.sln --configuration Release --no-restore
     - name: Test
