@@ -24,13 +24,13 @@ jobs:
     - name: Install dependencies
       run: dotnet restore blazor-basic-swa.sln
     - name: Build
-      run: dotnet build /home/runner/work/blazor-swa/blazor-swa/blazor-basic-swa.sln --configuration Release --no-restore
+      run: dotnet build blazor-basic-swa.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test /home/runner/work/blazor-swa/blazor-swa/blazor-basic-swa.sln --no-restore --verbosity normal  
+      run: dotnet test blazor-basic-swa.sln --no-restore --verbosity normal  
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v2
