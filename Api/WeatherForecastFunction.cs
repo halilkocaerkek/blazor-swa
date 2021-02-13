@@ -7,6 +7,8 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
 using BlazorApp.Shared;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace BlazorApp.Api
 {
@@ -33,7 +35,7 @@ namespace BlazorApp.Api
         }
 
         [FunctionName("WeatherForecast")]
-        public static IActionResult Run(
+        public static string Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -47,7 +49,7 @@ namespace BlazorApp.Api
                 Summary = GetSummary(temp)
             }).ToArray();
 
-            return new OkObjectResult(result);
+            return JsonConvert.SerializeObject(result);
         }
     }
 }
