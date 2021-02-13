@@ -11,24 +11,6 @@ on:
 
 jobs:
 
-  test_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
-    name: Unit Tests.
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      run: ls -lR
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Install dependencies
-      run: dotnet restore blazor-swa/blazor-basic-swa.sln
-    - name: Build
-      run: dotnet build blazor-swa/blazor-basic-swa.sln --configuration Release --no-restore
-    - name: Test
-      run: dotnet test blazor-swa/blazor-basic-swa.sln --no-restore --verbosity normal  
-
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
