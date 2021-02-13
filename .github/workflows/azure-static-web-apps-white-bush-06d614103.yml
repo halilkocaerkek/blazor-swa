@@ -22,7 +22,13 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Install dependencies
-      run: dotnet restore /home/runner/work/blazor-swa/blazor-swa/blazor-basic-swa.sln
+        pwd
+        ls
+        ls -lR
+      run: |
+        pwd
+        ls
+        dotnet restore /home/runner/work/blazor-swa/blazor-swa/blazor-basic-swa.sln
     - name: Build
       run: dotnet build /home/runner/work/blazor-swa/blazor-swa/blazor-basic-swa.sln --configuration Release --no-restore
     - name: Test
