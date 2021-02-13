@@ -23,11 +23,11 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore blazor-swa/blazor-basic-swa.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build blazor-swa/blazor-basic-swa.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal  
+      run: dotnet test blazor-swa/blazor-basic-swa.sln --no-restore --verbosity normal  
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
